@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Weather in Kelvin</title>
+    <script src="site.js"></script>
+    <link rel="stylesheet" href="site.css">
+  </head>
+
+  <body onload="init()">
+    <div class="header-div">
+      <div class="form-div">
+        <button class="go-button" onclick="lookup()">
+          <img class="search-button" alt="Search" src="search.svg">
+        </button>
+        <span>
+          <input id="city-input" class="city-input" type="text" placeholder="City ..." autofocus />
+        </span>
+      </div>
+    </div>
+    <div id='weather-div' class='weather-div'></div>
+    <div class="footer">
+      Copyright &copy; 2022, Mags Industries
+    </div>
+  </body>
+</html>

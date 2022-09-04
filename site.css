@@ -1,0 +1,113 @@
+body {
+    font-family: sans-serif;
+}
+div.header-div {
+    padding: 3em;
+    background: #999;
+}
+div.header-div > h1 {
+    font-size: 36pt;
+    font-family: sans-serif;
+}
+div.weather-div {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 80%;
+    padding-top: 2em;
+}
+div.left-div {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+div.right-div {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.form-div {
+    width: 40%;
+    margin: auto;
+    padding: 1em;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2em;
+    border-color: #111;
+    background: white;
+}
+
+div.form-div span {
+    display: block;
+    overflow: hidden;
+    padding-right: 3em;
+}
+
+input.city-input {
+    font-size: x-large;
+    border: 0;
+    outline: 0;
+    margin-left: 1em;
+    margin-right: 2em;
+    width: 100%;
+}
+
+button.go-button {
+    border: 0;
+    outline: 0;
+    background: white;
+    float: right;
+}
+
+img.search-button {
+    width: 2em;
+}
+
+div.weather-city {
+    font-size: 64pt;
+    font-family: sans-serif;
+    padding: 10px 10px 10px 30px;
+}
+
+div.weather-text {
+    font-size: 28pt;
+    padding: 10px 10px 10px 30px;
+}
+
+div.weather-cur-temp {
+    font-size: 72pt;
+    font-weight: bold;
+    padding: 10px 10px 10px 30px;
+}
+
+div.weather-feels-like {
+    font-size: 36pt;
+    padding: 10px 10px 10px 30px;
+}
+
+div.weather-min-temp {
+    font-size: 28pt;
+    padding: 10px 10px 10px 30px;
+}
+
+div.weather-max-temp {
+    font-size: 28pt;
+    padding: 10px 10px 10px 30px;
+}
+
+div.weather-humidity {
+    font-size: 28pt;
+    padding: 10px 10px 10px 30px;
+}
+
+div.weather-pressure {
+    font-size: 28pt;
+    padding: 10px 10px 10px 30px;
+}
+
+div.footer {
+    padding: 40px;
+    font-size: 10pt;
+    text-align: center;
+}
