@@ -6,7 +6,7 @@ import requests
 GEO_API = 'https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s'
 API_KEY = 'ceae1539b53e488c4113057e21b04014'
 
-applications = app = Bottle()
+application = app = Bottle()
 
 f = open('site.js')
 JS = f.read()
