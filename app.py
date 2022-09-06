@@ -1,6 +1,6 @@
 # Copyright (C) 2022, David Arnold
 
-from bottle import Bottle, response, run
+from bottle import Bottle, response, run, static_file
 import requests
 
 GEO_API = 'https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s'
@@ -8,44 +8,25 @@ API_KEY = 'ceae1539b53e488c4113057e21b04014'
 
 application = app = Bottle()
 
-f = open('site.js')
-JS = f.read()
-f.close()
-
-f = open('site.css')
-CSS = f.read()
-f.close()
-
-f = open('site.html')
-HTML = f.read()
-f.close()
-
-f = open('search.svg')
-SEARCH = f.read()
-f.close()
-
 
 @app.route('/')
 def home():
-    return HTML
+    return static_file('site.html', '')
 
 
 @app.route('/site.js')
 def get_js():
-    response.set_header('Content-Type', 'text/javascript')
-    return JS
+    return static_file('site.js', '')
 
 
 @app.route('/site.css')
 def get_css():
-    response.set_header('Content-type', 'text/css')
-    return CSS
+    return static_file('site.css', '')
 
 
 @app.route('/search.svg')
 def get_search_icon():
-    response.set_header('Content-type', 'image/svg+xml')
-    return SEARCH
+    return static_file('search.svg', '')
 
 
 def round_temp(container: dict, name: str):
@@ -66,15 +47,15 @@ def round_temp(container: dict, name: str):
 def get_weather(place: str):
 
     # Try to find weather for the supplied place.
-    response = requests.get(GEO_API % (place, API_KEY))
+    weather = requests.get(GEO_API % (place, API_KEY))
 
-    if response.status_code != 200:
+    if weather.status_code != 200:
         # FIXME: Create a JSON error structure
-        print(f"Error: {response.status_code}")
+        print(f"Error: {weather.status_code}")
         return
 
     # Round temperatures to 0.5 K
-    data = response.json()
+    data = weather.json()
     main = data.get('main')
     if main:
         round_temp(main, "temp")
