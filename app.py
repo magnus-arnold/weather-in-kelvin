@@ -3,6 +3,7 @@
 from bottle import Bottle, response, run, static_file
 import requests
 
+
 GEO_API = 'https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s'
 API_KEY = 'ceae1539b53e488c4113057e21b04014'
 
@@ -50,8 +51,8 @@ def get_weather(place: str):
     weather = requests.get(GEO_API % (place, API_KEY))
 
     if weather.status_code != 200:
-        # FIXME: Create a JSON error structure
-        print(f"Error: {weather.status_code}")
+        print(f'ERROR: status {weather.status_code} fetching data for "{place}"')
+        response.status = weather.status_code
         return
 
     # Round temperatures to 0.5 K

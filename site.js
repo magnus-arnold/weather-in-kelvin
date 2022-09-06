@@ -1,8 +1,8 @@
 
 update = function(data) {
 
-    var div = document.getElementById('weather-div');
-    var html = `\
+    let div = document.getElementById('weather-div');
+    div.innerHTML = `\
       <div class="left-div"> \
         <div class="weather-city"> ${data.name}</div> \
         <div class="weather-text">${data.weather[0].description}</div> \
@@ -16,10 +16,13 @@ update = function(data) {
         <div class="weather-pressure">Barometric pressure ${data.main.pressure} hPa</div> \
       </div> \
       `;
-    div.innerHTML = html;
 }
 
 lookup = function() {
+    // Show waiting spinner.
+    let div = document.getElementById('weather-div');
+    div.innerHTML = `<div class="waiting">Searching ...</div>`;
+
     // First dig the location out of the input widget.
     const input = document.getElementById('city-input');
 
@@ -32,12 +35,16 @@ lookup = function() {
             return response.json();
         })
         .then((json) => update(json))
-        .catch((err) => console.error(`Fetch problem: ${err.message}`));
+        .catch((err) => {
+            div.innerHTML = `<div class="error">Error: unable to find weather for location '${input.value}'</div>`;
+            console.error(`Fetch problem: ${err.message}`);
+        });
 }
 
 init = function() {
-    const input = document.getElementById('city-input');
 
+    // Trap 'Enter' keypress in search bar.
+    let input = document.getElementById('city-input');
     input.addEventListener("keyup", (event) => {
         if (event.key === 'Enter') {
             lookup();
